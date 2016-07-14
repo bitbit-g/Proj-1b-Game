@@ -1,31 +1,33 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="style.css" type="text/css">
-		<title></title>
-	</head>
-	<body>
-		<div class="container">
-			<
-	<p class="message">Use keyboard arrows to control left player. </p>
-<div class="table">
-	<div class="table-inner">
-		<span class="table__goal-crease circle"></span>
-		<span class="table__faceoff table__faceoff--top-left circle"></span>
-		<span class="table__faceoff table__faceoff--bottom-left circle"></span>
-		<span class="table__blue-line"></span>
-		<span class="table__center-line"></span>
-		<span class="circle"></span>
-		<span class="table__blue-line table__blue-line--two"></span>
-		<span class="table__faceoff table__faceoff--top-right circle"></span>
-		<span class="table__faceoff table__faceoff--bottom-right circle"></span>
-		<span class="table__goal-crease table__goal-crease--two circle"></span>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css" type="text/css">
+	<title></title>
+</head>
+
+<body>
+
+	<div class="container">
+		<header>
+			<p class="message">Use keyboard up down arrows to control the blue circle.</p>
+			<p class="message">Press shift to start the game</p>
+		</header>
+		<div class="table">
+			<span class="scoreP1">Player 1: <span id="one">0</span></span>
+			<span class="playerTurn">Turn: Player <span id="two">1</span></span>
+			<span class="scoreP2">Player 2: <span id="two">0</span></span>
+			<div class="table-inner">
+			<canvas id="myCanvas" width="700" height="400" style="border:1px solid #c3c3c3;">
+			</canvas>
+
+			</div>
 		</div>
-</div>
-</div>
-<canvas id="canvas" class="table table--canvas" tabindex="0"></canvas>
-<script type="text/javascript" src="main.js"></script>
+	</div>
+
+	<script type="text/javascript" src="main.js"></script>
 </body>
+
 </html>
