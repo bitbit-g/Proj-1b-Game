@@ -6,24 +6,44 @@
 //shift 16
 //space 32
 
+// current date time for countdown timer - compare 2 date times for difference of maybe 10s
+// compare y cood
+
+// shooting function
+// increase scoreP1
+// increase turn
+
+
 // ** timer for each turn
 var dx = 5;
 var dy = 5;
 var x = 170;
 var y = 40;
 var a = 300;
-var b = 100;
+var b = 200;
+var score = 0;
+var turn = 0;
+var start = false;
 var boardHt = 700;
 var boardWidth = 400;
+var d1 = new Date();
+var curr_sec1 = d.getSeconds();
+console.log(curr_sec1);
+var d2 = new Date();
+var curr_sec2 = d.getSeconds();
+
 var c = document.getElementById("myCanvas");
 var ctx = c.getContext("2d");
 
+
 //Draw Board
+function drawBoard(){
 ctx.fillStyle = "#000000";
 ctx.fillRect(660,125,40,150);
 ctx.moveTo(200,0);
 ctx.lineTo(200,400);
 ctx.stroke();
+}
 
 //draw puck
 
@@ -32,30 +52,36 @@ function drawController(){
 	ctx.arc(x,y,30,0,2*Math.PI);
 	ctx.fillStyle = "blue";
 	ctx.fill();
-	// this.mass = 15;
-	// this.velocityX = 0;
-	// this.velocityY = 0;
-	// this.maxSpeed = 10;
-	// this.frictionX = 0.997;
-	// this.frictionY = 0.997;
-	// this.acceleration = 1;
+
 }
-drawController();
+
 
 function drawPuck(){
+	var lap = 0;
+
+if (lap%2 === 0 && b < 370){
+	b += 10;
+	}
+else if (lap%2 === 0 && b === 370){
+	b -= 10;
+	lap += 1;
+	}
+	else if (lap%2 === 1 && b > 30){
+	b -= 10;
+	}
+
+	else if (lap%2 === 1 && b === 30){
+	b -= 10;
+	lap += 1;
+	}
+
 	ctx.beginPath();
 	ctx.arc(a,b,30,0,2*Math.PI);
 	ctx.fillStyle = "red";
 	ctx.fill();
-	// this.mass = 15;
-	// this.velocityX = 0;
-	// this.velocityY = 0;
-	// this.maxSpeed = 10;
-	// this.frictionX = 0.997;
-	// this.frictionY = 0.997;
-	// this.acceleration = 1;
+
 }
-drawPuck();
+
 
 function clear() {
 ctx.clearRect(0, 0, boardWidth, boardHt);
@@ -63,14 +89,19 @@ ctx.clearRect(0, 0, boardWidth, boardHt);
 
 function draw(){
 	clear();
-	drawPuck();
-	drawController();
+	drawBoard();
+	if (start) {
+		drawPuck();
+		drawController();
+	}
+
 }
 
 function init(){
 	window.addEventListener('keydown',doKeyDown);
 	return setInterval(draw, 1000);
 }
+
 
 
 
@@ -90,15 +121,18 @@ y += dy;
 break;
 //shift button was pressed - start game
 case 16:
-var decimal = Math.random();
-b = decimal * boardWidth;
+start = true;
 break;
+// space button was pressed - shoot
+case 32:
+shoot = true;
+break;
+
+}
 }
 
 }
 
-var score = 0;
-var turn = 0;
 
 
 // function setTimedInterval(callback, delay, timeout){
